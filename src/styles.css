@@ -1,0 +1,21 @@
+
+:root{
+    --primary-color: #ca0904 ;
+    --background-color: #f9f5f0;
+    --darck-color: #151515;
+    --contraste: #0098DB;
+    --contrasteAmarillo: #feff00;
+}
+
+body {
+    /*Esto hace que el foter quede abajo*/
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

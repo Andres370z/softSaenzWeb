@@ -1,0 +1,64 @@
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-lg-6" *ngIf="menuDta">
+      <a routerLink="../../menu" class="btn btn-sm btn-dark mb-3">Volver</a>
+      <img src="{{menuDta[0].productImage}}" alt="" width="100%">
+      <h1 class="mt-3">{{menuDta[0].productName}}</h1>
+      <p>{{menuDta[0].productDetails}}</p>
+      <p>{{menuDta[0].productPrice | currency: 'cop '}}</p>
+    </div>
+    <div class="col-lg-6">
+      <h1>Entremos en detalles</h1>
+      <form class="form" [formGroup]="form" (ngSubmit)="saveData()">
+        <div class="col-12 mt-2 mb-2">
+          <mat-form-field appearance="fill" class="wider-form-field mat-primary">
+            <mat-label>Ingresa tu Nombre</mat-label>
+            <input matInput formControlName="name">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>escribe tu nombre para saber quien eres</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mt-2 mb-2">
+          <mat-form-field appearance="fill" class="wider-form-field mat-primary">
+            <mat-label>Ingresa tu Numero de celular</mat-label>
+            <input matInput formControlName="telephone">
+            <mat-icon matSuffix>local_phone</mat-icon>
+            <mat-hint>escribe tu nombre para saber quien eres</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mt-2 mb-2">
+          <mat-form-field appearance="fill" class="wider-form-field mat-primary">
+            <mat-label>Ingresa tu correo electronico</mat-label>
+            <input matInput formControlName="email">
+            <div *ngIf="form.get('email').invalid">
+              <mat-error *ngIf="form.get('email').errors['email']">Esta direccion de correo es invalida
+                <mat-icon>report_problem</mat-icon></mat-error>
+            </div>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>escribe tu nombre para saber quien eres</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mt-2 mb-2">
+          <mat-form-field appearance="fill" class="wider-form-field mat-primary">
+            <mat-label>Estoy interesado en...</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." formControlName="about"></textarea>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>Escribe un mensaje manifestado el producto que deseas</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12 mt-2 mb-2">
+          <div class="row">
+            <div class="col-md-2">
+              <button class="btn btn-md btn-dark mt-3" [disabled]="form.invalid" type="submit">Enviar</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-md btn-dark mt-3" type="button" (click)="cleanForm()">Borrar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
