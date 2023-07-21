@@ -1,0 +1,9 @@
+.img-container {
+    text-align: center;
+  }
+  
+  .img-container img {
+    display: inline-block;
+    max-width: 70%;
+  }
+  

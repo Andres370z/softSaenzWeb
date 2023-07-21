@@ -7,11 +7,12 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
 
 const routes: Routes = [
-    {path: '', component: HomeComponent}, 
-    {path: 'menu', component: MenuComponent},
-    {path: 'menu/:id', component: ProductDetailsComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'contact', component: ContactComponent}
+    { path: '', loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomeModule) },
+    { path: 'menu', loadChildren: () => import('./components/pages/menu/menu.module').then(m => m.MenuModule) },
+    { path: 'menu/:id', loadChildren: () => import('./components/pages/product-details/product-details.module').then(m => m.ProductDetailsModule) },
+
+    { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) },
+    { path: 'contact', loadChildren: () => import('./components/pages/contact/contact.module').then(m => m.ContactModule) },
 ];
 
 @NgModule({
