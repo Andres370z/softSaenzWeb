@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/services/http.service';
 import { ProductsDetailsService } from 'src/app/services/products-details.service';
 import Swal from 'sweetalert2';
 
@@ -12,9 +13,8 @@ import Swal from 'sweetalert2';
 export class ContactComponent implements OnInit {
   public form: FormGroup
   constructor(
-    private route: ActivatedRoute,
-    private serviceDetail: ProductsDetailsService,
-    private myFormBuilder: FormBuilder
+    private myFormBuilder: FormBuilder,
+    private myHttpService: HttpService
   ) { }
 
   ngOnInit(): void {
@@ -22,12 +22,23 @@ export class ContactComponent implements OnInit {
   }
   sendForm(){
     console.log(this.form);
+    let params = {
+      name: this.form.value.name,
+      email: this.form.value.email,
+      asunto: this.form.value.about,
+      mensaje: this.form.value.message
+    }
+    //console.log('Te traigo esto... ',params);
+    this.myHttpService.sendForm(params).subscribe(resp =>{
+      console.log('Esta es tu respuesta ', resp);
+      
+    })
   }
   initial(){
     this.form = this.myFormBuilder.group({
       name: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['mispruebas3785@gmail.com', [Validators.required, Validators.email]],
       telephone: ['', [Validators.required, Validators.minLength(10)]],
       theme: ['', [Validators.required]],
       about: ['',[Validators.required]]
@@ -55,6 +66,14 @@ export class ContactComponent implements OnInit {
       }
     })
   }
-
+  sendWhatsApp(){
+    const mensajePredeterminado = encodeURIComponent('Hola estoy interesado en ')
+    let numberTelephone = ''
+    const url = `https://wa.me/${numberTelephone}?text=${mensajePredeterminado}`
+    window.open(url, '_blanck')
+  }
+  cleanForm(){
+    this.form.reset()
+  }
 
 }

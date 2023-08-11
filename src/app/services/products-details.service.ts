@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ProductsDetailsService {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   productsDetails = [
     
@@ -90,4 +91,5 @@ export class ProductsDetailsService {
       productImage: 'https://cdn.pixabay.com/photo/2023/06/29/13/04/yellow-8096360_1280.jpg'
     }
   ]
+  
 }

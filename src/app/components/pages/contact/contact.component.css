@@ -1,9 +1,24 @@
 .img-container {
-    text-align: center;
+  text-align: center;
+}
+
+.img-container img {
+  display: inline-block;
+  max-width: 70%;
+  cursor: pointer;
+}
+.custom-buton{
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: opacity 0.3s ease;
+}
+.custom-butonWhatsApp{
+  background-color: #4ECA5C;
+  color: #fff;
+}
+
+@media screen and (max-width:600px){
+  .mySocialMedia img{
+    width: 30%;
   }
-  
-  .img-container img {
-    display: inline-block;
-    max-width: 70%;
-  }
-  
+}

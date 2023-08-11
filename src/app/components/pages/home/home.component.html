@@ -1,6 +1,6 @@
 <div class="banner">
   <div class="content mt-5 mb-5">
-    <h1 class="mb-5"> <span  class="letter">Bienvenidos</span><br><span class="subText">"Porque el cliente siempre tiene
+    <h1 class="mb-5"> <span class="letter">Bienvenidos</span><br><span class="subText">"Porque el cliente siempre tiene
         la
         razon"</span></h1>
   </div>
@@ -9,8 +9,7 @@
   </div>
 </div>
 <div class="container mt-5 mb-5">
-  <h1 class="text-center">Nuestros servicios <span style="color: var(--primary-color); font-weight: bold;">mas
-      importantes</span></h1>
+  <h1 class="text-center">La <span style="color: var(--primary-color); font-weight: bold;">promoción </span>del dia</h1>
   <div class="row mt-5">
     <!-- UNO -->
     <div class="col-lg-4 mt-2">
@@ -36,7 +35,7 @@
 </div>
 <!-- PRODUCTS -->
 <div class="container mt-4 mb-4">
-  <h1 class="text-center">Lo mas <span style="color: var(--primary-color); font-weight: bold;">relevante</span></h1>
+  <h1 class="text-center">Los mejores <span style="color: var(--primary-color); font-weight: bold;">productos</span></h1>
   <div class="row">
     <div class="col-lg-3 mt-3" *ngFor="let product of productData; index as i">
       <div class="productBox" *ngIf="i<=3">
@@ -48,3 +47,29 @@
   </div>
   <a routerLink="menu" class="viewMore">Ver mas <i class="bi bi-arrow-right"></i> </a>
 </div>
+<!-- PRUEBA -->
+<div class="container mt-4 mb-4">
+  <h1 class="text-center">Nuestros mejores <span style="color: var(--primary-color); font-weight: bold;">servicios </span>a un click</h1>
+  <div class="row">
+    <div class="col-lg-12">
+      <swiper [slidesPerView]="isMobileView ?2: 3" [spaceBetween]="20" [autoplay]="{ delay: 2000, disableOnInteraction: false }" [pagination]="{ clickable: true }" #swiper [virtual]="true" >
+        <ng-template swiperSlide class="productBoxC" *ngFor="let services of productData">
+          <img src="{{services.productImage}}" alt="" [routerLink]="['/services',services.id]">
+          <h1>{{services.productName}}</h1>
+          <p>{{services.productDetails | slice: 0:169}}{{services.productDetails.length > 169? '... hecha un vistazo': ''}}</p>
+        </ng-template>
+      </swiper>
+    </div>
+    <div class="col-lg-12 mt-3">
+      <div class="d-flex justify-content-between">
+        <button (click)="slidePrev()" class="custom-swiper-button-next" type="button">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <button (click)="slideNext()" class="custom-swiper-button-prev" type="button">
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,3 +1,7 @@
+@import "swiper/swiper.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+
 .banner {
     background-image: linear-gradient(100deg, #2C2232, #2C223220), url(../../../../assets/images/setup.jpg);
     height: 600px;
@@ -73,10 +77,11 @@
 
 /*LOS PRODUCTOS*/
 .productBox {
-    
+
     padding: 10px 5px;
     margin-bottom: 10px;
 }
+
 /* .productBox :hover{
     border: #000 solid 5px;
 } */
@@ -104,16 +109,100 @@
     font-size: 18px;
 
 }
-@media screen and (max-width:600px){
-    .banner
-    {
+/*Los productos del Carrusel*/
+.productBoxC {
+
+    padding: 10px 5px;
+    margin-bottom: 10px;
+}
+
+
+.productBoxC img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.productBoxC h1 {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*------------------------------SWIPER CHANGES-----------------------------------------*/
+
+.swiper{
+    width: 100%;
+    height: 100%;
+}
+
+.custom-swiper-button-prev, .custom-swiper-button-next{
+    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    color: #CA0904;
+    border-radius: 50%; /* Hacer los botones redondos ajustando el border-radius */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* Eliminar el borde del botón */
+    border: solid #CA0904;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+.custom-swiper-button-prev:hover {
+    color: #fff;
+    background-color: #CA0904; 
+  }
+  
+  /* Efecto hover para el botón "next" */
+  .custom-swiper-button-next:hover {
+    color: #fff;
+    background-color: #CA0904; 
+  }
+.swiper-pagination-bullet, .swiper-pagination-bullet-active{
+    width: 20px;
+    height: 20px;
+}
+
+.swiper-pagination-bullet-active{
+    background-color: #CA0904;
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
+    bottom: 0px;
+}
+/*------------------------------SWIPER CHANGES FINISH-----------------------------------------*/
+@media screen and (max-width:600px) {
+    .banner {
         height: 700px;
     }
+
     .content h1 {
         font-size: 40px;
         margin-bottom: 20px;
     }
-    .content h1 .subText{
+
+    .content h1 .subText {
         font-size: 16px;
+
     }
+    .productBoxC img {
+        width: 100%;
+        height: 125px;
+        border-radius: 5px;
+    }
+    .productBoxC p {
+        max-height: 0px;
+        overflow: hidden;
+        position: relative;
+    }
+    .swiper-pagination-bullet, .swiper-pagination-bullet-active{
+        width: 10px;
+        height: 10px;
+    }
+
 }

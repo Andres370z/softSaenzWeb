@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/pages/home/home.component';
-import { MenuComponent } from './components/pages/menu/menu.component';
-import { AboutComponent } from './components/pages/about/about.component';
-import { ContactComponent } from './components/pages/contact/contact.component';
-import { ProductDetailsComponent } from './components/pages/product-details/product-details.component';
+
 
 const routes: Routes = [
     { path: '', loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomeModule) },
@@ -13,6 +9,8 @@ const routes: Routes = [
 
     { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) },
     { path: 'contact', loadChildren: () => import('./components/pages/contact/contact.module').then(m => m.ContactModule) },
+    { path: 'services', loadChildren: () => import('./components/pages/my-services/my-services.module').then(m => m.MyServicesModule) },
+    { path: 'services/:id', loadChildren: () => import('./components/pages/my-services-details/my-services-details.module').then(m => m.MyServicesDetailsModule) }
 ];
 
 @NgModule({

@@ -22,14 +22,14 @@
             <mat-form-field appearance="fill" style="width: 100%;">
               <mat-label>Ingresa tu Correo electronico</mat-label>
               <input matInput formControlName="email">
-              <mat-icon matSuffix>person</mat-icon>
+              <mat-icon matSuffix>mail</mat-icon>
             </mat-form-field>
           </div>
           <div class="col-lg-6 mt-2 mb-2">
             <mat-form-field appearance="fill" style="width: 100%;">
               <mat-label>Ingresa tu Numero de telefono</mat-label>
               <input matInput formControlName="telephone">
-              <mat-icon matSuffix>person</mat-icon>
+              <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
           </div>
           <div class="col-lg-6 mt-2 mb-2">
@@ -43,31 +43,55 @@
             <mat-form-field appearance="fill" class="wider-form-field mat-primary" style="width:100%;">
               <mat-label>Estoy interesado en...</mat-label>
               <textarea matInput placeholder="Ex. It makes me feel..." formControlName="about"></textarea>
-              <mat-icon matSuffix>person</mat-icon>
+              <mat-icon matSuffix>info</mat-icon>
               <mat-hint>Escribe un mensaje manifestado el producto que deseas</mat-hint>
             </mat-form-field>
           </div>
-          <div class="col-lg-12 mt-2 mb-2">
-            <button class="btn btn-md btn-dark" [disabled]="form.invalid" type="submit">Enviar</button>
-          </div>
         </div>
       </form>
+      <div class="col-12 mt-2 mb-2">
+        <div class="row">
+          <div class="col-4 col-md-2">
+            <button class="btn btn-md custom-buton mt-3" [disabled]="form.invalid" type="submit"
+              (click)="saveData()">Enviar</button>
+          </div>
+          <div class="col-4 col-md-2">
+            <button class="btn btn-md custom-buton mt-3" type="button" (click)="cleanForm()"><i
+                class="bi bi-trash"></i></button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 mySocialMedia">
       <h1 class="text-center">Redes Sociales</h1>
       <div class="row">
         <div class="col-lg-4 mt-2 mb-2 img-container">
           <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="" class="iamgesSocial">
+          <h1>Facebook</h1>
         </div>
         <div class="col-lg-4 mt-2 mb-2 img-container">
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Instagram-Icon.png" alt="" class="iamgesSocial">
+          <h1>Instagram</h1>
         </div>
         <div class="col-lg-4 mt-2 mb-2 img-container">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/WhatsApp_logo-color-vertical.svg" alt="" class="iamgesSocial">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/WhatsApp_logo-color-vertical.svg" alt="" class="iamgesSocial" (click)="sendWhatsApp() ">
+          <h1>WhatsApp</h1>
         </div>
+        
         <br>
-        <div class="col-lg-12 mt-2 mb-2">
-          <h1 class="text-center">O Escribenos por whatsApp</h1>
+        <h1 class="text-center">O Escribenos por whatsApp</h1>
+        <div class="col-12 mt-2 mb-2">
+          
+          <mat-form-field appearance="fill" class="wider-form-field mat-primary" style="width: 100%;">
+            <mat-label>Estoy interesado en...</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            <mat-icon matSuffix>message</mat-icon>
+            <mat-hint>Escribe un mensaje con la informacion que deseas</mat-hint>
+          </mat-form-field> 
+          <div class="col-md-6 ">
+            <button class="btn btn-md mt-3 custom-butonWhatsApp" [disabled]="" type="button"
+              (click)="sendWhatsApp()">Envia este mensaje <i class="bi bi-whatsapp"></i></button>
+          </div>
         </div>
       </div>
     </div>

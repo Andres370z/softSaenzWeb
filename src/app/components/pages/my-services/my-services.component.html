@@ -1,0 +1,13 @@
+<h1 class="text-center" style="margin-top: 70px;">Servicios</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let service of servicesData">
+            <div class="productBox mt-3 mb-3">
+                <img src="{{service.serviceImage}}" alt="{{service.serviceName}}">
+                <h1>{{service.serviceName}}</h1>
+                <p>{{service.serviceDetails | slice: 0:169}}{{service.serviceDetails.length > 169? '... hecha un vistazo': ''}}</p>
+                <a class="buyProduct" [routerLink]="['/services',service.id]">Leer más</a>
+            </div>
+        </div>
+    </div>
+</div>

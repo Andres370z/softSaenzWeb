@@ -1,60 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsDetailsService } from 'src/app/services/products-details.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import Swal from 'sweetalert2'
-import * as Notiflix from 'notiflix';
 import { HttpService } from 'src/app/services/http.service';
+import { MyServicesService } from 'src/app/services/my-services.service';
+import Swal from 'sweetalert2';
+
 @Component({
-  selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  selector: 'app-my-services-details',
+  templateUrl: './my-services-details.component.html',
+  styleUrls: ['./my-services-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
-  public form: FormGroup;
+export class MyServicesDetailsComponent implements OnInit {
+  public form: FormGroup
   constructor(
     private route: ActivatedRoute,
-    private serviceDetail: ProductsDetailsService,
+    private serviceDetail: MyServicesService,
     private myFormBuilder: FormBuilder,
     private myHttpService: HttpService
+
   ) { }
   getMenuId: any
   menuDta: any
   ngOnInit(): void {
     this.initial()
   }
-  getDetails() {
-    this.getMenuId = this.route.snapshot.paramMap.get('id')
-    console.log(this.getMenuId, 'tu resultado')
-    if (this.getMenuId) {
-      this.menuDta = this.serviceDetail.productsDetails.filter((value) => {
-        return value.id == this.getMenuId
-      })
-      console.log(this.menuDta, 'este es tu menu Dta');
-    }
-  }
-  initial() {
+  initial(){
     this.form = this.myFormBuilder.group({
-      name: ['', Validators.required],
-      email: ['mispruebas3785@gmail.com', [Validators.required, Validators.email]],
-      telephone: ['', [Validators.required, Validators.minLength(10)]],
-      about: ['', [Validators.required]],
-      mensaje: [`hola mi nombre es `, [Validators.required]],
+      name: ['', [Validators.required]],
+      telephone: ['',[Validators.required, Validators.minLength(10)]],
+      email: ['mispruebas3785@gmail.com',[Validators.required, Validators.email]],
+      about: ['',[Validators.required]],
+      message: ['',[Validators.required, Validators.minLength(10)]],
     })
-
-    this.getDetails()
+    this.getServiceDetails()
   }
-  sendForm() {
-    //console.log(this.form)
-    Notiflix.Loading.standard('cargando')
+  sendForm(){
+    console.log(this.form)
     let params = {
       name: this.form.value.name,
       email: this.form.value.email,
       asunto: this.form.value.about,
-      mensaje: this.form.value.mensaje,
-      telephone: this.form.value.telephone,
+      mensaje: this.form.value.message
     }
     console.log('este es tu params',params);
     //llamas al servicio
@@ -62,11 +48,18 @@ export class ProductDetailsComponent implements OnInit {
       console.log('esta es tu respuestas desde el servicio',resp);
       
     })
-    Notiflix.Loading.remove() 
-    this.cleanForm()
-
   }
-  cleanForm() {
+  getServiceDetails(){
+    this.getMenuId = this.route.snapshot.paramMap.get('id')
+    console.log('este es tu resultado ', this.getMenuId)
+    if(this.getMenuId){
+      this.menuDta = this.serviceDetail.serviceDetails.filter((value)=>{
+        return value.id == this.getMenuId
+      })
+      console.log(this.menuDta, 'este es tu menu Dta');
+    }
+  }
+  cleanForm(){
     this.form.reset()
   }
   saveData() {
@@ -81,7 +74,7 @@ export class ProductDetailsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'Listo!', 
+          'Listo!',
           'En un momento un asesor estara en contacto contigo',
           'success'
         )

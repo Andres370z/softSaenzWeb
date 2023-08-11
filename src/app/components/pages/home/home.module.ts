@@ -10,8 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { SwiperModule } from 'swiper/angular';
 @NgModule({
   declarations: [HomeComponent],
   imports: [
@@ -23,7 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    SwiperModule
   ]
 })
 export class HomeModule { }
