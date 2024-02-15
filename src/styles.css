@@ -1,10 +1,34 @@
-
-:root{
-    --primary-color: #ca0904 ;
+:root {
+    --primary-color: #ca0904;
     --background-color: #f9f5f0;
     --darck-color: #151515;
     --contraste: #0098DB;
     --contrasteAmarillo: #feff00;
+}
+
+
+/* Works on Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ca0904 #fff;
+}
+
+
+/* Works on Chrome, Edge, and Safari */
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: orange;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 20px;
+    border: 3px solid orange;
 }
 
 body {
@@ -12,10 +36,18 @@ body {
     height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -1,0 +1,51 @@
+<div class="banner">
+    <div class="content mt-5 mb-5">
+        <h1 class="mb-5"> <span class="letter">Bienvenidos</span><br><span class="subText">"Porque el cliente siempre tiene
+          la
+          razon"</span></h1>
+    </div>
+    <div class="content2">
+        <a routerLink="menu" class="enter">Entra y descubre <i class="bi bi-arrow-right"></i></a>
+    </div>
+</div>
+<div class="container mt-5 mb-5">
+    <h1 class="text-center">Nuestros servicios <span style="color: var(--primary-color); font-weight: bold;">mas
+        importantes</span></h1>
+    <div class="row mt-5">
+        <!-- UNO -->
+        <div class="col-lg-4 mt-2">
+            <div class="stepBox">
+                <h1>1</h1>
+                <p>lalalala</p>
+            </div>
+        </div>
+        <!-- DOS -->
+        <div class="col-lg-4 mt-2">
+            <div class="stepBox">
+                <h1>2</h1>
+                <p>lalalala</p>
+            </div>
+        </div>
+        <!-- TRES -->
+        <div class="col-lg-4 mt-2">
+            <div class="stepBox">
+                <h1>3</h1>
+                <p>lalalala</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRODUCTS -->
+<div class="container mt-4 mb-4">
+    <h1 class="text-center">Lo mas <span style="color: var(--primary-color); font-weight: bold;">relevante</span></h1>
+    <div class="row">
+        <div class="col-lg-3 mt-3" *ngFor="let product of typeProduct; index as i">
+            <div class="productBox" *ngIf="i<=3">
+                <img [src]="api+'typeProducts/'+product.imgTypeProducts" alt="{{product.nameTypeProducts}}">
+                <h1>
+                    <mat-icon>{{product.icontype}}</mat-icon> {{product.nameTypeProducts}}</h1>
+            </div>
+        </div>
+    </div>
+    <a routerLink="menu" class="viewMore">Ver mas <i class="bi bi-arrow-right"></i> </a>
+</div>

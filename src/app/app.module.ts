@@ -19,6 +19,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon'
+import { MatNativeDateModule } from '@angular/material/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InterceptorService } from './services/interceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { pagesReducers } from '../store/pagesReducers';
+import { EffectsArray } from '../store/effects';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +42,7 @@ import {MatIconModule} from '@angular/material/icon'
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -40,9 +50,20 @@ import {MatIconModule} from '@angular/material/icon'
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    StoreModule.forRoot(pagesReducers),
+    EffectsModule.forRoot(EffectsArray),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
-  providers: [],
+  providers : [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    MatNativeDateModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
