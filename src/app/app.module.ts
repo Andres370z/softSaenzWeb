@@ -28,6 +28,7 @@ import { pagesReducers } from '../store/pagesReducers';
 import { EffectsArray } from '../store/effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { environment } from '../environments/environment';
     MatCheckboxModule,
     FormsModule,
     MatIconModule,
+    MatBadgeModule,
     StoreModule.forRoot(pagesReducers),
     EffectsModule.forRoot(EffectsArray),
     ServiceWorkerModule.register('ngsw-worker.js', {

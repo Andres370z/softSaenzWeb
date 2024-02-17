@@ -8,10 +8,12 @@ import { bookingEndDetailShowEffects } from './booking/bookingEndDetailShowEffec
 import { bookingEndEffects } from './booking/bookingEndEffects';
 import { bookingEndShowEffects } from './booking/bookingEndShowEffects';
 import {detailEffects} from './detailEffects';
+import { productListDetailEffects } from './products/productListDetailEffects';
 import { productsCreationEffects } from './products/productsCreationEffects';
 import { productsCreationListEffects } from './products/productsCreationListEffects';
 import { productsEditProductListEffects } from './products/productsEditProductListEffects';
 import { productsEffects } from './products/productsEffects';
+import { productsGalleryEffects } from './products/productsGalleryEffects';
 import { productsTypeEffects } from './products/productsTypeEffects';
 import { proyectsClientsCreationEffects } from './proyectsClients/proyectsClientsCreationEffects';
 import { proyectsClientsEffects } from './proyectsClients/proyectsClientsEffects';
@@ -38,6 +40,8 @@ export const EffectsArray: any[] = [
     productsCreationListEffects,
     productsCreationEffects,
     productsTypeEffects,
+    productsGalleryEffects,
+    productListDetailEffects,
     reservationCartEffects,
     reservationDeleteCartEffects,
     reservationCreationCartEffects,

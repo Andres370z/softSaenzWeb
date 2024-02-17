@@ -26,7 +26,7 @@ export class AlertService {
     Swal.fire(this.jsonConfig);
   }
   convertTextDecrypt(text:string) {   
-    return window.atob(text)
+    return decodeURIComponent(escape(window.atob( text )));
   } 
   messagefin() {
     Swal.close();

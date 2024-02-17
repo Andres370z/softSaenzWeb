@@ -8,29 +8,27 @@
         <a routerLink="menu" class="enter">Entra y descubre <i class="bi bi-arrow-right"></i></a>
     </div>
 </div>
+
+<section class="ajus-section">
+    <div class="text-slider">
+        <h1>Quienes somos?</h1>
+        <p>
+            Somos una empresa en crecimiento estamos en el mercado desde hace once años, hemos venido evolucionando de manera exponencial ya que empezamos como una empresa de mantenimiento de equipos de computo y dispositivos móviles. y ya hoy tenemos dos servicios
+            mas para ofrecer los cuales son los siguientes, Servicios de asesorías en informes de salud ante el ministerio de salud y servicio de elaboración de paginas web totalmente reponsive y de aplicaciones móviles.</p>
+    </div>
+    <img src="https://apiinvenseptsystem.softsaenz.com.co/img/products/1707973777_65cd9c9138c53.jpeg" alt="no salio" width="100%">
+</section>
+
 <div class="container mt-5 mb-5">
     <h1 class="text-center">Nuestros servicios <span style="color: var(--primary-color); font-weight: bold;">mas
         importantes</span></h1>
     <div class="row mt-5">
         <!-- UNO -->
-        <div class="col-lg-4 mt-2">
-            <div class="stepBox">
-                <h1>1</h1>
-                <p>lalalala</p>
-            </div>
-        </div>
-        <!-- DOS -->
-        <div class="col-lg-4 mt-2">
-            <div class="stepBox">
-                <h1>2</h1>
-                <p>lalalala</p>
-            </div>
-        </div>
-        <!-- TRES -->
-        <div class="col-lg-4 mt-2">
-            <div class="stepBox">
-                <h1>3</h1>
-                <p>lalalala</p>
+        <div class="col-lg-4 mt-4" *ngFor="let list of productsType;">
+            <div class="stepBox" [style]="'background-image: url('+api+'products/'+list.imgProducts+');'">
+                <h1>{{list.nameProducts}}</h1>
+                <p>{{list.codeProductLists}}</p>
+                <div class="fondoText"></div>
             </div>
         </div>
     </div>
@@ -44,6 +42,7 @@
                 <img [src]="api+'typeProducts/'+product.imgTypeProducts" alt="{{product.nameTypeProducts}}">
                 <h1>
                     <mat-icon>{{product.icontype}}</mat-icon> {{product.nameTypeProducts}}</h1>
+
             </div>
         </div>
     </div>

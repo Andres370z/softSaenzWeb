@@ -31,3 +31,186 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.my_class2 {
+    display: none;
+}
+
+.ajust-item img {
+    width: 100px;
+    height: 100px;
+}
+
+@media (max-width: 750px) {
+    .ajust-item img {
+        width: 100%!important;
+        height: 200px!important;
+    }
+    .ajust-item {
+        margin: 0px !important;
+        margin-bottom: 20px!important;
+    }
+}
+
+@media (min-width: 1100px) {
+    .example-flex-container {
+        display: flex;
+        justify-content: space-around !important;
+        flex-wrap: initial !important;
+    }
+}
+
+.ajust-item p {
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.modal-dialog {
+    max-width: 850px !important;
+    margin: 1.75rem auto;
+}
+
+.modal-dialog .modal-header .modal-title {
+    text-align: center;
+    width: 100%;
+    font-size: 25px;
+    color: #000;
+    font-weight: bold;
+}
+
+.ajust-item h1 {
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.ajust-item {
+    margin: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    justify-items: center !important;
+    text-align: center;
+    flex-direction: row;
+    flex-direction: column;
+    -webkit-box-shadow: -12px 9px 19px -11px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -12px 9px 19px -11px rgba(0, 0, 0, 0.75);
+    box-shadow: -12px 9px 19px -11px rgba(0, 0, 0, 0.75);
+}
+
+.paginationList {
+    text-align: center;
+    margin-top: 20px;
+}
+
+section {
+    display: table;
+}
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+.ajust-item div {
+    padding: 2px;
+    margin-top: 10px;
+}
+
+.example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.content {
+    top: 30%;
+    left: 10%;
+    position: absolute;
+}
+
+.content h1 {
+    color: #fff;
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 0.8;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.content h1 .letter {
+    letter-spacing: 4px;
+}
+
+.content h1 .subText {
+    font-size: 20px;
+    letter-spacing: 4px;
+}
+
+.banner {
+    background-image: linear-gradient(100deg, #2C2232, #2C223220), url(https://apiinvenseptsystem.softsaenz.com.co/img/typeProducts/lcd3.jpeg);
+    height: 600px;
+    background-position: center top;
+    background-size: cover;
+}
+
+.mat-icon {
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.material-icons {
+    font-size: 18px !important;
+}
+
+.mat-button,
+.mat-raised-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-fab,
+.mat-mini-fab {
+    font-size: 12px !important;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ca0904;
+    border-color: #ca0904;
+}
+
+.pagination {
+    justify-content: flex-end;
+}
+
+.page-link {
+    color: #ca0904;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.float-Button {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    z-index: 999999999;
+}
+
+.card.paginationList nav {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+}

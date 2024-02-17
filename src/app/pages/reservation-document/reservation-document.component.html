@@ -1,1 +1,114 @@
-<p>reservation-document works!</p>
+<div class="banner">
+    <div class="content mt-5 mb-5">
+        <h1 class="mb-5"> <span class="letter">Carrito de Reserva</span><br></h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-body">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Referencia</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item  of reservationCart">
+                            <td>{{item.codeProductLists}}</td>
+                            <td>{{item.referenceProducts}}</td>
+                            <td>{{item.nameProducts}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>${{item.usersPrice}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total reserva</strong> </td>
+                            <td>{{totalSumUsers | currency: 'USD' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12">
+            <mat-checkbox class="example-margin" [(ngModel)]="userCreation">Deseas registrar tus datos como usuario </mat-checkbox>
+        </div>
+        <div class="col-md-12">
+            <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+                <div class="row">
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="text" formControlName="name" placeholder="Nombres" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="text" formControlName="surname" placeholder="Apellidos" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="text" formControlName="telephone" placeholder="Número de teléfono" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="text" formControlName="identificationCard" placeholder="Número de identidad" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="email" formControlName="email" placeholder="Correo" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="text" formControlName="shippingAddress" placeholder="Dirección de envio" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row" *ngIf="userCreation">
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="password" formControlName="password" placeholder="Contraseña" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width">
+                            <input matInput class="form-control" type="password" formControlName="passwordVerifi" placeholder="Verificar Contraseña" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-12 textPoli">
+                    <h2><strong>Nota: </strong></h2>
+                    <p>Este pedido solo es una reserva y estara disponible para el administrador solo 24 horas, si pasado este tiempo no se realiza el pago y actualización a facturado el sistema borrará este pedido una vez facturado el pedido se procedera
+                        a envio del mismo por eso es muy importante que la dirección este correcta</p>
+                    <h2><strong>Normas que reglamentan el comercio electrónico en Colombia</strong></h2>
+                    <p>Las principales normas que reglamentan el Comercio Electrónico en Colombia son la Ley 527 de 1999 que define y regula el acceso y uso de los mensajes de datos, del comercio electrónico y de las firmas digitales, y establece las entidades
+                        de certificación correspondientes (que tomó como referencia la ley modelo de comercio electrónico de CNUDMI - Naciones Unidas), y la Ley 1480 de 2011 que contiene el Estatuto del Consumidor en donde se consagran los derechos del
+                        consumidor del comercio electrónico. <br> Desde el punto de vista del consumidor, sus principales derechos como usuario del comercio electrónico están consagrados en la Ley 1480 de 2011, siendo la Superintendencia de Industria
+                        y Comercio la responsable velar por el cumplimiento de estos derechos.<br> Desde el punto de vista de los demás agentes que intervienen en el comercio electrónico (tiendas virtuales, portales de compras, instituciones financieras,
+                        pasarelas de pago y operadores logísticos) sus actividades se rigen por las normas legales que reglamentan cada una de esas actividades. Por ejemplo, las instituciones financieras (responsables de tramitar los pagos electrónicos
+                        por Internet) se rigen por las normas del Estatuto Orgánico del Sistema Financiero (Decreto Ley 663 de 1993 y sus normas complementarias). Los operadores postales y logísticos (responsables de la entrega de paquetes del comercio
+                        electrónico a los consumidores finales) se rigen por la Ley 1369 de 2009 y la Ley 105 de 1993, entre otras.<br> Respecto a las empresas que se dedican a vender productos por Internet como tiendas virtuales, portales de compras
+                        (marketplaces), grandes superficies que venden al por menor, entre otras, sus actividades se rigen por las leyes que regulan el respectivo producto o servicio que venden, aclarando no se requiere de ningún permiso especial para
+                        crear un portal de compras por Internet, más allá de los permisos generales establecidos para cualquier establecimiento de comercio (bajo las regulación del Código de Comercio y del Código Civil).</p>
+                </div>
+                <div class="modal-footer" *ngIf="reservationCart.length != 0">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="exitAcces()">Cancelar</button>
+                    <button href="#pablo" class="btn btn-primary" style="background-color: #D01914!important;" [disabled]="form.invalid">Reservar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

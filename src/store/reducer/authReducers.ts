@@ -14,6 +14,8 @@ const _authReducer = createReducer(
     authInitialState,
     on(dataUsersSucess, (state,{users}) =>({
         ...state,
+        loading:false,
+        loaded:true,
        auth:{...users}
         
     })),

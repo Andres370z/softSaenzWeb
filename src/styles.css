@@ -6,6 +6,41 @@
     --contrasteAmarillo: #feff00;
 }
 
+.swal2-popup.swal2-toast.swal2-show {
+    background-size: cover;
+    width: 190px !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Myriad Pro Regular';
+    background: #ffffff85;
+    padding: 10px;
+    box-shadow: none;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.lg-container {
+    display: none!important;
+}
+
+.fixed-top {
+    z-index: 999999999999999!important;
+}
+
+#swal2-title {
+    margin: 0px;
+    margin-top: 0px;
+    margin-top: -10px;
+}
+
+.swal2-image {
+    margin: 0px!important;
+}
+
 
 /* Works on Firefox */
 

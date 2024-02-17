@@ -1,1 +1,45 @@
-<p>detail-products works!</p>
+<div class="banner">
+    <div class="content mt-5 mb-5">
+        <h1 class="mb-5"> <span class="letter">Detalles Producto: <strong *ngIf="selectItems">{{selectItems.nameProducts}}</strong> </span><br></h1>
+    </div>
+</div>
+<div class="main-content">
+    <div class="container">
+        <div class="card-body ">
+            <div class="row" *ngIf="selectItems">
+                <div class="col-md-7">
+                    <lightgallery *ngIf="selectItems.imgProducts != ''" [settings]="settings" [onInit]="onInit" [onBeforeSlide]="onBeforeSlide">
+                        <a [href]="api+'products/'+selectItems.imgProducts" class="gallery-item">
+                            <img class="img-list" alt="softsaenz s.a.s" [src]="api+'products/'+selectItems.imgProducts" />
+                        </a>
+                    </lightgallery>
+                </div>
+                <div class="col-md-5">
+                    <h1><strong>{{selectItems.nameProducts}}</strong></h1>
+                    <h2><strong>Disponibles: {{selectItems.amountEnd}}</strong></h2>
+                    <h3><strong>Calidad: {{selectItems.nameQualities}}</strong></h3>
+                    <h3><strong>Categoria: </strong>{{selectItems.nameTypeProducts}}</h3>
+                    <h3><strong>Codigo: </strong>{{selectItems.codeProductLists}}</h3>
+                    <h3><strong>Precio: $ {{selectItems.usersPrice}}</strong></h3>
+                    <h3><strong>Cantidad diponible: </strong> {{selectItems.amountEnd}}</h3>
+                    <div class="example-flex-container">
+                        <div class="example-button-container" (click)="postReservationCartService(selectItems)">
+                            <button mat-raised-button color="green" class="buttomList">
+                                            <mat-icon>add_shopping_cart</mat-icon>
+                                            Reservar
+                                        </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h1><strong>Galería</strong></h1>
+                    <lightgallery *ngIf="items.length != 0" [settings]="settings" [onInit]="onInit" [onBeforeSlide]="onBeforeSlide">
+                        <a *ngFor="let item of items" [href]="api+'products/'+item.nameImages" class="gallery-item">
+                            <img class="img-responsive" alt="softsaenz s.a.s" [src]="api+'products/'+item.nameImages" />
+                        </a>
+                    </lightgallery>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

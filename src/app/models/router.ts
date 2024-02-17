@@ -1,5 +1,3 @@
-import { empty } from "rxjs";
-
 export const RoutersLink = {
     productsUpdate:"productsUpdate/",
     productListUpdate:"productListUpdate/",
@@ -86,7 +84,8 @@ export const RoutersLink = {
     totalSales:"totalSales",
     buyGraphGeneralProduct:"buyGraphGeneralProduct",
     buyGraphGeneralClients:"buyGraphGeneralClients",
-    getListTypeProducts:"getListTypeProducts"
+    getListTypeProducts:"getListTypeProducts",
+    card:"pages/reservationDocument"
 };
 
 export const Menssage = {
@@ -147,6 +146,7 @@ export const Menssage = {
     phone: "El teléfono es obligatorio",
     idCity: "La ciudad es obligatoria",
     email: "El Correo es obligatorio",
+    shippingAddress: "La dirección de envío es obligatoria",
     nit: "El nit no es valido",
     empty: "",
     valiEmail: '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$',

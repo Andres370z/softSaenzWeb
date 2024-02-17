@@ -1,5 +1,5 @@
 .navbar-expand-lg .navbar-nav .nav-link.active-link {
-    color: var(--primary-color);
+    color: #000;
     font-weight: bold;
 }
 
@@ -44,15 +44,20 @@
 }
 
 .navTittle {
-    color: #000;
+    color: #fff;
 }
 
 .navbar-nav .nav-link {
-    color: #000;
+    color: #fff;
+}
+
+.ms-auto {
+    margin-right: 20px;
 }
 
 .navbarcolor {
-    background-color: #fff;
+    z-index: 99999999999999;
+    background-color: #ca0904;
     -webkit-box-shadow: -1px 3px 17px 1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -1px 3px 17px 1px rgba(0, 0, 0, 0.75);
     box-shadow: -1px 3px 17px 1px rgba(0, 0, 0, 0.75);

@@ -24,4 +24,7 @@ export const pagesReducers: ActionReducerMap<PagesStates> = {
     bookingList: reducer.bookingListReducer,
     bookingShow: reducer.bookingShowReducer,
     detailBooking: reducer.detailBookingReducer,
+    productsTypeItem:reducer.productsTypeReducer,
+    productsGallery: reducer.productsGalleryReducer,
+    productListDetail: reducer.productListDetailReducer
 }

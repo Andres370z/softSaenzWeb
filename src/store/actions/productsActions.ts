@@ -23,3 +23,11 @@ export const editProductListError = createAction('[EditProductList] editProductL
 export const loadinggetListTypeProducts = createAction('[getListTypeProducts] loadinggetListTypeProducts', props<{id: number}>());
 export const datagetListTypeProductsSucess = createAction('[getListTypeProducts] setgetListTypeProducts',props<{ listTypeProducts: any}>());
 export const getListTypeProductsError = createAction('[getListTypeProducts] getListTypeProductsError',props<{payload: any}>());
+//getgalleryProducts
+export const loadinggetgalleryProducts = createAction('[TypeProducts] loadinggetgalleryProducts', props<{item: number}>());
+export const datagetgalleryProductsSucess = createAction('[TypeProducts] setgetgalleryProducts',props<{ galleryProducts: any}>());
+export const getgalleryProductsError = createAction('[TypeProducts] tgetgalleryProductsError',props<{payload: any}>());
+//productListDetail
+export const loadingProductListDetail = createAction('[productListDetail] loadingProductListDetail', props<{item: string}>());
+export const dataProductListDetailSucess = createAction('[productListDetail] setProductListDetail',props<{ productListDetail: any}>());
+export const productListDetailError = createAction('[productListDetail] productListDetailError',props<{payload: any}>());

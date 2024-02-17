@@ -1,1 +1,14 @@
-<p>services works!</p>
+<h1 class="text-center" style="margin-top: 70px;">Productos</h1>
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let product of productData">
+            <div class="productBox mt-3 mb-3">
+                <img src="{{product.productImage}}" alt="{{product.productName}}">
+                <h1>{{product.productName}}</h1>
+                <p>{{product.productDetails}}</p>
+                <p>$ {{product.productPrice | currency: 'cop '}}</p>
+                <a class="buyProduct" [routerLink]="['/menu',product.id]">Lo quiero &nbsp;<i class="bi bi-bag"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public userSubscription: Subscription;
   public typeProductsSubscription: Subscription;
   public typeProduct: any[] = [];
+  public productsType: any[] = [];
   public reservationCart: any =[];
   public totalSumTecn: number = 0
   public totalSumUsers: number = 0
@@ -28,7 +29,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   public createQualitiesService: Subscription;
   public wayToPayService: Subscription;
   public createTypeProductsService: Subscription;
-  public bookingService: Subscription;
   public usersData: any;
   public api = environment.img
   constructor(
@@ -44,6 +44,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+    this.createProductsService.unsubscribe();
+    this.reservationCartService.unsubscribe();
+    this.wayToPayService.unsubscribe();
+    this.createTypeProductsService.unsubscribe();
+    this.typeProductsSubscription.unsubscribe();
   }
   onSubmit(item: any){
       this.store.dispatch(action.loadingUsers({item}));
@@ -51,8 +56,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   productData: any[] = []
   ngOnInit(): void {
     this.getProductDetails()
+    this.dataUsersSucess()
     this.datatypeProductsSucess()
+    this.dataProductsTypeSucess()
     this.getTypeProducts()
+    this.getProductsType(4)
   }
   getProductDetails(){
     this.productData = this.productDetailService.productsDetails
@@ -71,7 +79,6 @@ export class HomeComponent implements OnInit, OnDestroy {
              break;
          }
          if (data.error != null) {
-           console.log(data.error)
            this.alertError(data.error.message);          
          }
          if (data.auth != null) {
@@ -95,176 +102,35 @@ export class HomeComponent implements OnInit, OnDestroy {
              break;
          }
          if (data.error != null) {
-           console.log(data.error)
            this.alertError(data.error.message);          
          }
          if (data.typeProductsCheck == 1) {
-          console.log(data)
           this.typeProduct = data.typeProducts
          }
        })
    }
 
-   private reservationCreationCart(){
-    this.reservationCartService = this.store.select('reservationCreationCart')
-      .subscribe(data =>{
-        switch (data.loading) {
-          case true:
-            this.loading();
-            break;
-          case false:
-            this.stopLoading();
-            break;
-          default:
-            break;
-        }
-        if (data.reservationCheck == 2) {
-          this.getReservationCartService()
-        }
-        if (data.error != null){
-          this.alertError(data.error.message); 
-        } 
-    })
-  }
-  private reservationDeleteCart(){
-    this.reservationCartService = this.store.select('reservationDeleteCart')
-      .subscribe(data =>{
-        switch (data.loading) {
-          case true:
-            this.loading();
-            break;
-          case false:
-            this.stopLoading();
-            break;
-          default:
-            break;
-        }
-        if (data.reservationCheck == 3) {
-          console.log("delete", data)
-          this.totalSumTecn = 0
-          this.totalSumUsers = 0
-          this.fullData  = 0  
-          this.getReservationCartService()
-        }
-        if (data.error != null){
-          this.alertError(data.error.message); 
-        } 
-    })
-  }
-  
-  private dataCreateBookingSucess(){
-    this.createProductsService = this.store.select('booking')
-      .subscribe(data =>{
-        switch (data.loading) {
-          case true:
-            this.loading();
-            break;
-          case false:
-            this.stopLoading();
-            break;
-          default:
-            break;
-        }
-        if (data.bookingCheck == 2) {
-          this.saveAccessDetail(data.booking)
-        }
-        if (data.error != null){
-          this.alertError(data.error.message); 
-        }
-    })
-    this.dataCreateBookingDetailSucess()
-  }
-  private dataCreateBookingDetailSucess(){
-    this.createProductsService = this.store.select('bookingDetailCreation')
-      .subscribe(data =>{
-        switch (data.loading) {
-          case true:
-            this.loading();
-            break;
-          case false:
-            this.stopLoading();
-            break;
-          default:
-            break;
-        }
-        if (data.bookingCheck == 8) {
-          this.deleteReservationCartService()
-          let pagination = {
-            idQualities:"",
-            idTypeProducts:"",
-            buscar:""
-          }
-          this.totalSumTecn = 0
-          this.totalSumUsers = 0
-          this.fullData  = 0 
-
-        }
-        if (data.error != null){
-          this.alertError(data.error.message); 
-        }
-    })
-  }
-  public saveAccess(){
-    if (this.selectList != 0) {
-      const date = new Date()
-      const dateEnd = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
-      const timeEnd = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
-      const item = {
-        date: dateEnd,
-        time: timeEnd,
-        amount:this.fullData,
-        idWayToPays:this.selectList,
-        idPercentage: 2,
-        idusers : this.usersData.user.id,
-        idProyectsClients : this.usersData.user.idProyectsClients,
-        data: this.reservationCart
-      }
-      this.store.dispatch(
-        action.loadingCreateBooking({ item })
-      );
-    } else {
-      this.alertError("Debes seleccionar una forma de pago"); 
-    }
-    
-  }
-  public saveAccessDetail(dataEnd: any){
-    const date = new Date()
-    const dateEnd = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
-    const timeEnd = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
-    const item = {
-      date: dateEnd,
-      time: timeEnd,
-      idbookings: dataEnd.id,
-      idusers : this.usersData.user.id,
-      idProyectsClients : this.usersData.user.idProyectsClients,
-      data: this.reservationCart
-    }
-    this.store.dispatch(
-      action.loadingBookingAdmin({ item })
-    );
-  }
-  public exitAcces(){
-    Swal.fire({
-      title: 'Estas seguro de eliminar tu carrito de reserva',
-      icon: 'info',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Si',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.deleteReservationCartService();
-      } else if (result.isDenied) {
-        this.alertError(Menssage.serverNull); 
-      }
-    })
-  }
+   dataProductsTypeSucess(){
+    this.typeProductsSubscription = this.store.select('productsTypeItem')
+       .subscribe(data =>{
+         switch (data.loading) {
+           case true:
+             this.loading();
+             break;
+           case false:
+             this.stopLoading();
+             break;
+           default:
+             break;
+         }
+         if (data.error != null) {
+           this.alertError(data.error.message);          
+         }
+         if (data.productsTypeCheck == 2) {
+          this.productsType = data.productsType
+         }
+       })
+   }
 
   public postReservationCartService(itemEnd: any){
     this.totalSumTecn = 0
@@ -320,6 +186,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   getTypeProducts(){
     this.store.dispatch(
       action.loadingTypeProducts()
+    );
+  }
+  getProductsType(id: number){
+    this.store.dispatch(
+      action.loadinggetListTypeProducts({id})
     );
   }
    loading(){
