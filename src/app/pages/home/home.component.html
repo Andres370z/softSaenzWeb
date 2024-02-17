@@ -38,7 +38,7 @@
     <h1 class="text-center">Lo mas <span style="color: var(--primary-color); font-weight: bold;">relevante</span></h1>
     <div class="row">
         <div class="col-lg-3 mt-3" *ngFor="let product of typeProduct; index as i">
-            <div class="productBox" *ngIf="i<=3">
+            <div class="productBox" *ngIf="i<=7">
                 <img [src]="api+'typeProducts/'+product.imgTypeProducts" alt="{{product.nameTypeProducts}}">
                 <h1>
                     <mat-icon>{{product.icontype}}</mat-icon> {{product.nameTypeProducts}}</h1>
@@ -46,5 +46,21 @@
             </div>
         </div>
     </div>
-    <a routerLink="menu" class="viewMore">Ver mas <i class="bi bi-arrow-right"></i> </a>
+    <a routerLink="pages/products" class="viewMore">Ver mas <i class="bi bi-arrow-right"></i> </a>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container mt-4 mb-4">
+    <h1 class="text-center">Nuestros <span style="color: var(--primary-color); font-weight: bold;">desarrollos</span></h1>
+    <div class="row">
+        <div class="col-lg-4 mt-4" *ngFor="let list of productsTypeSoft;">
+            <div class="stepBox" [style]="'background-image: url('+api+'products/'+list.imgProducts+');'">
+                <h1>{{list.nameProducts}}</h1>
+                <p>{{list.codeProductLists}}</p>
+                <a (click)="encrypt(list.id)" class="viewMore">Ver mas <i class="bi bi-arrow-right"></i> </a>
+                <div class="fondoText"></div>
+            </div>
+        </div>
+    </div>
+
 </div>

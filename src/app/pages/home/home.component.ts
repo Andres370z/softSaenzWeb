@@ -9,6 +9,7 @@ import { LocalStoreService } from 'src/app/services/utility/local-store.service'
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,16 +20,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   public typeProductsSubscription: Subscription;
   public typeProduct: any[] = [];
   public productsType: any[] = [];
+  public productsTypeSoft: any[] = [];
   public reservationCart: any =[];
   public totalSumTecn: number = 0
   public totalSumUsers: number = 0
   public selectList: number = 0;
   public fullData: number = 0
-  public createProductsService: Subscription;
-  public reservationCartService: Subscription;
-  public createQualitiesService: Subscription;
-  public wayToPayService: Subscription;
-  public createTypeProductsService: Subscription;
   public usersData: any;
   public api = environment.img
   constructor(
@@ -36,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private store: Store<PagesStates>,
     private alert: AlertService,
     private localStore: LocalStoreService,
+    private router: Router,
   ) { 
     this.onSubmit({
       email: Menssage.usersAuth,
@@ -43,12 +41,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
-    this.createProductsService.unsubscribe();
-    this.reservationCartService.unsubscribe();
-    this.wayToPayService.unsubscribe();
-    this.createTypeProductsService.unsubscribe();
     this.typeProductsSubscription.unsubscribe();
+    this.productsType = []
+    this.productsTypeSoft = []
   }
   onSubmit(item: any){
       this.store.dispatch(action.loadingUsers({item}));
@@ -61,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dataProductsTypeSucess()
     this.getTypeProducts()
     this.getProductsType(4)
+    this.getProductsType(12)
   }
   getProductDetails(){
     this.productData = this.productDetailService.productsDetails
@@ -127,10 +123,26 @@ export class HomeComponent implements OnInit, OnDestroy {
            this.alertError(data.error.message);          
          }
          if (data.productsTypeCheck == 2) {
-          this.productsType = data.productsType
+          this.validTypeProducts(data.productsType)
          }
        })
-   }
+  }
+
+  public validTypeProducts(item: any[]){
+    this.productsTypeSoft = []
+    item.forEach(element => {
+      switch (element.idTypeProducts) {
+        case 4:
+          this.productsType.push(element)
+          break;
+        case 12:
+          this.productsTypeSoft.push(element)
+          break;
+        default:
+          break;
+      }
+    });
+  }
 
   public postReservationCartService(itemEnd: any){
     this.totalSumTecn = 0
@@ -201,5 +213,8 @@ export class HomeComponent implements OnInit, OnDestroy {
    }
    alertError(description: string){
      this.alert.error(Menssage.error, description);
+   }
+   public encrypt(id: string){
+    this.router.navigate(['/pages/products/detailProducts/'+window.btoa(id)]);
    }
 }
