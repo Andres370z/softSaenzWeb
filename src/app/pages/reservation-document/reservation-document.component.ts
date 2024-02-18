@@ -7,7 +7,6 @@ import { Menssage, RoutersLink } from 'src/app/models/router';
 import { AlertService } from 'src/app/services/utility/alert.service';
 import { LocalStoreService } from 'src/app/services/utility/local-store.service';
 import { PagesStates } from 'src/store/interface/pagesInterface';
-import * as products  from 'src/store/actions';
 import Swal from 'sweetalert2';
 import * as action from 'src/store/actions';
 @Component({
@@ -239,7 +238,7 @@ export class ReservationDocumentComponent implements OnInit, OnDestroy {
         data: this.reservationCart
       }
       this.store.dispatch(
-        products.loadingCreateBooking({ item })
+        action.loadingCreateBooking({ item })
       );
     } else {
       this.alertError("Debes seleccionar una forma de pago"); 
@@ -259,7 +258,7 @@ export class ReservationDocumentComponent implements OnInit, OnDestroy {
       data: this.reservationCart
     }
     this.store.dispatch(
-      products.loadingBookingAdmin({ item })
+      action.loadingBookingAdmin({ item })
     );
   }
   public exitAcces(){
@@ -289,25 +288,35 @@ export class ReservationDocumentComponent implements OnInit, OnDestroy {
     console.log("listo")
     var item = Number(this.alert.convertTextDecrypt(this.usersData.authorisation.idProyectsClients));
     this.store.dispatch(
-      products.loadingreservationCart({ item })
+      action.loadingreservationCart({ item })
     );
   }
 
   public deleteReservationCartService(){
     var item = this.alert.convertTextDecrypt(this.usersData.authorisation.idProyectsClients)
     this.store.dispatch(
-      products.loadingDeleteReservationCart({ item })
+      action.loadingDeleteReservationCart({ item })
     );
   }
   public routeList(){
     this.router.navigate(['/pages/products']);
   }
   public onSubmit(item: any){
-    if (this.valid(item)) {
-        this.store.dispatch(action.loadingUsers({item}));
+    let verifyDataList = this.verifyData(item)
+    if (this.valid(verifyDataList)) {
+        this.store.dispatch(action.loadingUsers({item: verifyDataList}));
     }
   }
-  valid(item: any): boolean{
+  private verifyData(item: any) : any{
+    if (item.password === Menssage.empty) {
+      item.password = 'userInactive'
+    }
+    if (item.passwordVerifi === Menssage.empty) {
+      item.passwordVerifi = 'userInactive'
+    }
+    return item;
+  }
+  private valid(item: any): boolean{
     let valid = true
     if (item.name === Menssage.empty) {
       this.alert.error(Menssage.error, Menssage.name);

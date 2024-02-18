@@ -147,6 +147,7 @@ export const Menssage = {
     idCity: "La ciudad es obligatoria",
     email: "El Correo es obligatorio",
     shippingAddress: "La dirección de envío es obligatoria",
+    selectplan: "Debes seleccionar un plan",
     nit: "El nit no es valido",
     empty: "",
     valiEmail: '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$',
