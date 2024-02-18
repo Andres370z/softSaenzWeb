@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -9,8 +9,9 @@ import { LocalStoreService } from 'src/app/services/utility/local-store.service'
 import { environment } from 'src/environments/environment';
 import { PagesStates } from 'src/store/interface/pagesInterface';
 import * as action from 'src/store/actions';
-declare var $: any;
-declare var particlesJS: any;
+import * as $ from 'jquery';
+//declare var $:any
+declare var window: any;
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -18,9 +19,11 @@ declare var particlesJS: any;
 })
 export class ServicesComponent implements OnInit, OnDestroy {
   public typeProductsSubscription: Subscription;
+  public quoteServicesSubscription: Subscription;
   public productsType: any[] = [];
   public itemQuote: any;
   public form: FormGroup;
+  formModal: any;
   public arraySelecteplan:any[]=[
     {
       id:1,
@@ -51,16 +54,24 @@ export class ServicesComponent implements OnInit, OnDestroy {
     private alert: AlertService,
     public formBuilder: FormBuilder,
     private localStore: LocalStoreService,
+
   ) { 
     this.usersData = this.localStore.getSuccessLogin();
   }
   ngOnDestroy(): void {
     this.typeProductsSubscription.unsubscribe();
+    this.quoteServicesSubscription.unsubscribe();
   }
   productData: any[] = []
 
   ngOnInit(): void {
-    this.getProducts()
+    this.initial()
+    this.dataProductsTypeSucess()
+    this.dataQuoteServicesSucess()
+    this.getProductsType(4)
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('exampleModal')
+    );
   }
   public initial(){
     this.form = this.formBuilder.group({
@@ -112,6 +123,24 @@ export class ServicesComponent implements OnInit, OnDestroy {
           this.productsType = data.productsType
          }
        })
+  }
+  dataQuoteServicesSucess(){
+    this.quoteServicesSubscription = this.store.select('quoteServices')
+       .subscribe(data =>{
+         switch (data.loading) {
+           case true:
+             this.loading();
+             break;
+           case false:
+             this.stopLoading();
+             break;
+           default:
+             break;
+         }
+         if (data.error != null) {
+           this.alertError(data.error.message);          
+         }
+       })
    }
    loading(){
       this.alert.loading();
@@ -119,21 +148,26 @@ export class ServicesComponent implements OnInit, OnDestroy {
    stopLoading(){
       this.alert.messagefin();
    }
+   getProductsType(id: number){
+    this.store.dispatch(
+      action.loadinggetListTypeProducts({id})
+    );
+  }
    alertError(description: string){
       this.alert.error(Menssage.error, description);
    }
    modal(item: any){
     this.itemQuote = item;
-    $('#exampleModal').modal('show')
+    this.formModal.show();
    }
    public onSubmit(item: any){
     if (this.valid(item)) {
-        this.store.dispatch(action.loadingUsers({item}));
+        this.store.dispatch(action.loadingCreateQuoteServices({item}));
     }
    }
    public exitAcces(){
     this.form.reset()
-    $('#exampleModal').modal('hide')
+    this.formModal.hide();
    }
    private valid(item: any): boolean{
     let valid = true

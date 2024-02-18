@@ -27,4 +27,5 @@ export interface PagesStates{
     bookingList: any,
     bookingShow: any,
     detailBooking: any,
+    quoteServices: any,
 }

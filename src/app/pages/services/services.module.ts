@@ -13,7 +13,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     ServicesComponent
@@ -30,7 +30,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatRadioModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ]
 })
 export class ServicesModule { }

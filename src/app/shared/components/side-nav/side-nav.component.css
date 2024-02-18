@@ -40,7 +40,7 @@
 }
 
 .menu a:hover {
-    color: var(--primary-color);
+    color: #000;
 }
 
 .navTittle {

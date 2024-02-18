@@ -1,4 +1,5 @@
 export const RoutersLink = {
+    quoteServices:"quoteServices",
     productsUpdate:"productsUpdate/",
     productListUpdate:"productListUpdate/",
     productListEnd:"productListEnd",

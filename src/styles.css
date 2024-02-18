@@ -19,6 +19,16 @@
     box-shadow: none;
 }
 
+.modal {
+    z-index: 999999!important;
+}
+
+.modal-dialog {
+    max-width: 750px !important;
+    margin-top: 20%;
+    z-index: 999999!important;
+}
+
 .mat-form-field {
     width: 100%;
 }

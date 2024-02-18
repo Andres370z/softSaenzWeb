@@ -55,8 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.datatypeProductsSucess()
     this.dataProductsTypeSucess()
     this.getTypeProducts()
-    this.getProductsType(4)
     this.getProductsType(12)
+    this.getProductsType(4)
   }
   getProductDetails(){
     this.productData = this.productDetailService.productsDetails

@@ -20,6 +20,7 @@ import { proyectsClientsEffects } from './proyectsClients/proyectsClientsEffects
 import { proyectsClientsFullEffects } from './proyectsClients/proyectsClientsFullEffects';
 import { qualityCreationEffects } from './quality/qualityCreationEffects';
 import { qualityEffects } from './quality/qualityEffects';
+import { quoteServicesEffects } from './quoteServicesEffects';
 import { reservationCartEffects } from './reservationCart/reservationCartEffects';
 import { reservationCreationCartEffects } from './reservationCart/reservationCreationCartEffects';
 import { reservationDeleteCartEffects } from './reservationCart/reservationDeleteCartEffects';
@@ -65,5 +66,6 @@ export const EffectsArray: any[] = [
     suppliersPaginationEffects,
     proyectsClientsCreationEffects,
     proyectsClientsEffects,
-    proyectsClientsFullEffects
+    proyectsClientsFullEffects,
+    quoteServicesEffects
 ];

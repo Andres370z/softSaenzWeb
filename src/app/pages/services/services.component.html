@@ -1,13 +1,17 @@
+<div class="banner">
+    <div class="content mt-5 mb-5">
+        <h1 class="mb-5"> <span class="letter">Servicios</span><br></h1>
+    </div>
+</div>
 <div class="container mt-5 mb-5">
-    <h1 class="text-center">Nuestros servicios <span style="color: var(--primary-color); font-weight: bold;">mas
-        importantes</span></h1>
+
     <div class="row mt-5">
         <!-- UNO -->
         <div class="col-lg-4 mt-4" *ngFor="let list of productsType;">
             <div class="stepBox" [style]="'background-image: url('+api+'products/'+list.imgProducts+');'">
                 <h1>{{list.nameProducts}}</h1>
                 <p>{{list.codeProductLists}}</p>
-                <a (click)="modal(list)" style="background-color: #D01914!important;" class="viewMore">Cotizar<i class="bi bi-arrow-right"></i> </a>
+                <button href="#pablo" class="btn btn-primary" (click)="modal(list)" style="background-color: #D01914!important;">Cotizar<i class="bi bi-arrow-right"></i> </button>
                 <div class="fondoText"></div>
             </div>
         </div>
@@ -18,64 +22,48 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Carrito de Reserva</h5>
+                <h2 class="modal-title" id="exampleModalLabel">Cotización</h2>
             </div>
             <div class="modal-body">
                 <div class="col-md-12">
                     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <mat-form-field class="example-full-width">
                                     <input matInput class="form-control" type="text" formControlName="name" placeholder="Nombres" />
                                 </mat-form-field>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <mat-form-field class="example-full-width">
                                     <input matInput class="form-control" type="text" formControlName="surname" placeholder="Apellidos" />
                                 </mat-form-field>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <mat-form-field class="example-full-width">
                                     <input matInput class="form-control" type="text" formControlName="telephone" placeholder="Número de teléfono" />
                                 </mat-form-field>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <mat-form-field appearance="fill">
-                                    <mat-label>Seleccciona el rol de usuarios</mat-label>
-                                    <mat-select formControlName="idrol">
+                                    <mat-label>Seleccciona el plan </mat-label>
+                                    <mat-select formControlName="selectPlan">
                                         <mat-option class="ajust" *ngFor="let item of arraySelecteplan" [value]="item.id">
                                             {{item.name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-icon> place</mat-icon>
                                     <mat-hint align="end">Aquí está la flecha desplegable ^</mat-hint>
                                 </mat-form-field>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <mat-form-field class="example-full-width">
                                     <input matInput class="form-control" type="email" formControlName="email" placeholder="Correo" />
                                 </mat-form-field>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <mat-form-field class="example-full-width">
                                     <input matInput class="form-control" type="text" formControlName="shippingAddress" placeholder="Dirección" />
                                 </mat-form-field>
                             </div>
-                        </div>
-                        <div class="col-12 textPoli">
-                            <h2><strong>Normas que reglamentan el comercio electrónico en Colombia</strong></h2>
-                            <p>Las principales normas que reglamentan el Comercio Electrónico en Colombia son la Ley 527 de 1999 que define y regula el acceso y uso de los mensajes de datos, del comercio electrónico y de las firmas digitales, y establece
-                                las entidades de certificación correspondientes (que tomó como referencia la ley modelo de comercio electrónico de CNUDMI - Naciones Unidas), y la Ley 1480 de 2011 que contiene el Estatuto del Consumidor en donde se consagran
-                                los derechos del consumidor del comercio electrónico. <br> Desde el punto de vista del consumidor, sus principales derechos como usuario del comercio electrónico están consagrados en la Ley 1480 de 2011, siendo la Superintendencia
-                                de Industria y Comercio la responsable velar por el cumplimiento de estos derechos.<br> Desde el punto de vista de los demás agentes que intervienen en el comercio electrónico (tiendas virtuales, portales de compras, instituciones
-                                financieras, pasarelas de pago y operadores logísticos) sus actividades se rigen por las normas legales que reglamentan cada una de esas actividades. Por ejemplo, las instituciones financieras (responsables de tramitar
-                                los pagos electrónicos por Internet) se rigen por las normas del Estatuto Orgánico del Sistema Financiero (Decreto Ley 663 de 1993 y sus normas complementarias). Los operadores postales y logísticos (responsables de la
-                                entrega de paquetes del comercio electrónico a los consumidores finales) se rigen por la Ley 1369 de 2009 y la Ley 105 de 1993, entre otras.<br> Respecto a las empresas que se dedican a vender productos por Internet como
-                                tiendas virtuales, portales de compras (marketplaces), grandes superficies que venden al por menor, entre otras, sus actividades se rigen por las leyes que regulan el respectivo producto o servicio que venden, aclarando
-                                no se requiere de ningún permiso especial para crear un portal de compras por Internet, más allá de los permisos generales establecidos para cualquier establecimiento de comercio (bajo las regulación del Código de Comercio
-                                y del Código Civil).</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="exitAcces()">Cancelar</button>
@@ -87,3 +75,6 @@
         </div>
     </div>
 </div>
+<ng-template #exampleModal let-modal>
+
+</ng-template>

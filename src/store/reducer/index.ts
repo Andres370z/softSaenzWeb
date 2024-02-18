@@ -23,3 +23,4 @@ export * from './booking/bookingEditReducers';
 export * from './booking/bookingListReducers';
 export * from './booking/bookingShowReducers';
 export * from './booking/detailBookingReducers';
+export * from './quoteServicesReducers'
