@@ -50,7 +50,7 @@
 </div>
 
 <!-- PRODUCTS -->
-<div class="container mt-4 mb-4">
+<div class="container mt-4 mb-4" *ngIf="productsTypeSoft.length != 0">
     <h1 class="text-center">Nuestros <span style="color: var(--primary-color); font-weight: bold;">desarrollos</span></h1>
     <div class="row">
         <div class="col-lg-4 mt-4" *ngFor="let list of productsTypeSoft;">

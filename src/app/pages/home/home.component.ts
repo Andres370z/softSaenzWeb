@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductsDetailsService } from 'src/app/services/products-details.service';
 import { PagesStates } from 'src/store/interface/pagesInterface';
@@ -34,11 +34,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     private alert: AlertService,
     private localStore: LocalStoreService,
     private router: Router,
+    private zone: NgZone
   ) { 
     this.onSubmit({
       email: Menssage.usersAuth,
       password: Menssage.passWordAuth
     })
+    this.productsType = [];
+    this.productsTypeSoft = [];
   }
   ngOnDestroy(): void {
     this.typeProductsSubscription.unsubscribe();
@@ -55,8 +58,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.datatypeProductsSucess()
     this.dataProductsTypeSucess()
     this.getTypeProducts()
-    this.getProductsType(12)
     this.getProductsType(4)
+    this.getProductsType(12)
+    
   }
   getProductDetails(){
     this.productData = this.productDetailService.productsDetails
@@ -129,19 +133,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public validTypeProducts(item: any[]){
-    this.productsTypeSoft = []
+    
     item.forEach(element => {
       switch (element.idTypeProducts) {
         case 4:
-          this.productsType.push(element)
+            this.productsType.push(element)
           break;
         case 12:
-          this.productsTypeSoft.push(element)
+            this.productsTypeSoft.push(element)
           break;
         default:
           break;
       }
     });
+
+  
   }
 
   public postReservationCartService(itemEnd: any){

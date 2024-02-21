@@ -21,7 +21,9 @@ const _productsTypeReducer = createReducer(
         ...state,
        loading:true,
        item: id,
-       error: null
+       error: null,
+       productsType: null,
+       productsTypeCheck:1,
         
     })),
     on(productsType.datagetListTypeProductsSucess, (state, {listTypeProducts}) =>({
